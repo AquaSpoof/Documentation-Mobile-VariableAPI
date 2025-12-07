@@ -71,7 +71,8 @@ const myBtn = new ButtonSetting("Click Me", (view) => {
 
 // Регистрируем
 myModule.addSetting(myBtn);
-ModuleManager.addModule(myModule);```
+ModuleManager.addModule(myModule);
+```
 
 
 
@@ -469,37 +470,26 @@ ModuleManager.addModule(myModule);```
 
 ## Константные классы
 ### ModuleCategory
-*Категории для кастомных модулей*
-```js
-ModuleCategory.COMBAT
-ModuleCategory.MOVEMENT
-ModuleCategory.PLAYER
-ModuleCategory.MISC
-ModuleCategory.OTHER
-```
+*Константы категорий модулей. Используются при создании модуля в конструкторе `new Module(...)` для определения вкладки, в которой он появится.*
 
-### BlockSide
-*В основном нужно для LocalPlayer.buildBlock(x, y, z, side) в качестве аргумента side*
-```js
-BlockSide.DOWN
-BlockSide.UP
-BlockSide.NORTH
-BlockSide.SOUTH
-BlockSide.WEST
-BlockSide.EAST
-```
+- `ModuleCategory.COMBAT` - Боевые модули. Сдесь лежат: KillAura, Aimbot, HitAim.
+- `ModuleCategory.MOVEMENT` - Модули движения. Сдесь лежат: AirJump, Move, JetPack.
+- `ModuleCategory.PLAYER` - Модули игрока. Сдесь лежат: AntiAFK, AutoClicker, AutoSprint.
+- `ModuleCategory.MISC` - Разное (Miscellaneous). Сдесь лежат: ArmorHud, AspectRatio, Chams, ChatMacros.
+- `ModuleCategory.OTHER` - Другое. Дополнительная категория для скрипт менеджера, конфиги, гост мод.
 
 ### MoveButton
-*Нужно для методов `LocalPlayer.isMoveButtonPressed` и `LocalPlayer.setMoveButtonStatus`*
-`MoveButton.JUMP` - Прыжок
-`MoveButton.SHIFT` - Присяд (правый SHIFT)
-`MoveButton.JUMP_IN_FLIGHT`
-`MoveButton.FORWARD`
-`MoveButton.BACK`
-`MoveButton.LEFT`
-`MoveButton.RIGHT`
-`MoveButton.LEFT_TOP`
-`MoveButton.RIGHT_TOP`
+*Константы клавиш управления движением. Используются в методах `LocalPlayer.isMoveButtonPressed(id)` и `LocalPlayer.setMoveButtonStatus(id, status)`.*
+
+- `MoveButton.JUMP` - Кнопка прыжка. На суше заставляет игрока подпрыгнуть, в воде — плыть вверх.
+- `MoveButton.SHIFT` - Кнопка приседания (Sneak). Игрок передвигается медленно, скрывает свой никнейм и не падает с края блоков.
+- `MoveButton.JUMP_IN_FLIGHT` - Кнопка набора высоты в режиме полета (Creative). Работает только если игрок уже находится в режиме полета.
+- `MoveButton.FORWARD` - Кнопка движения вперед. Перемещает игрока в ту сторону, куда направлен его взгляд.
+- `MoveButton.BACK` - Кнопка движения назад. Перемещает игрока спиной вперед.
+- `MoveButton.LEFT` - Кнопка движения (стрейфа) влево. Перемещает игрока влево относительно его взгляда.
+- `MoveButton.RIGHT` - Кнопка движения (стрейфа) вправо. Перемещает игрока вправо относительно его взгляда.
+- `MoveButton.LEFT_TOP` - Кнопка диагонального движения: Вперед + Влево. Обычно используется на сенсорных крестовинах (D-Pad).
+- `MoveButton.RIGHT_TOP` - Кнопка диагонального движения: Вперед + Вправо. Обычно используется на сенсорных крестовинах (D-Pad).
 
 ### PacketType
 *Тип отправляемого пакета, нужно для onSendPacket (ЭТО ТОЖЕ ТОЛЬКО ДЛЯ ОСОБО УМНЫХ)*
@@ -595,67 +585,65 @@ PacketType.USE_ITEM_PACKET
 ```
 
 ### Enchantment
-*Все виды зачарований. Нужно для `Item.enchant`*
-```js
-Enchantment.PROTECTION
-Enchantment.FIRE_PROTECTION
-Enchantment.FEATHER_FALLING
-Enchantment.BLAST_PROTECTION
-Enchantment.PROJECTILE_PROTECTION
-Enchantment.THORNS
-Enchantment.RESPIRATION
-Enchantment.AQUA_AFFINITY
-Enchantment.DEPTH_STRIDER
-Enchantment.SHARPNESS
-Enchantment.SMITE
-Enchantment.BANE_OF_ARTHROPODS
-Enchantment.KNOCKBACK
-Enchantment.FIRE_ASPECT
-Enchantment.LOOTING
-Enchantment.EFFICIENCY
-Enchantment.SILK_TOUCH
-Enchantment.UNBREAKING
-Enchantment.FORTUNE
-Enchantment.POWER
-Enchantment.PUNCH
-Enchantment.FLAME
-Enchantment.INFINITY
-Enchantment.LUCK_OF_THE_SEA
-Enchantment.LURE
-Enchantment.FROST_WALKER
-Enchantment.MENDING
-```
+*Константы типов зачарований. Используются в методе `Item.enchant(slot, enchantment, level)`.*
+
+- `Enchantment.PROTECTION` - Защита. Снижает общий получаемый урон от большинства источников.
+- `Enchantment.FIRE_PROTECTION` - Огнестойкость. Снижает урон от огня и лавы, а также уменьшает время горения.
+- `Enchantment.FEATHER_FALLING` - Невесомость. Снижает урон от падения и телепортации эндер-жемчугом.
+- `Enchantment.BLAST_PROTECTION` - Взрывоустойчивость. Снижает урон от взрывов (криперов, тнт).
+- `Enchantment.PROJECTILE_PROTECTION` - Защита от снарядов. Снижает урон от стрел, трезубцев и фаерболов.
+- `Enchantment.THORNS` - Шипы. С шансом наносит урон противнику, который вас ударил.
+- `Enchantment.RESPIRATION` - Подводное дыхание. Увеличивает время, которое можно провести под водой без потери воздуха.
+- `Enchantment.AQUA_AFFINITY` - Подводник. Убирает штраф к скорости добычи блоков под водой.
+- `Enchantment.DEPTH_STRIDER` - Подводная ходьба. Увеличивает скорость передвижения (плавания) под водой.
+- `Enchantment.SHARPNESS` - Острота. Увеличивает урон в ближнем бою по всем мобам.
+- `Enchantment.SMITE` - Небесная кара. Увеличивает урон по нежити (зомби, скелеты, визеры).
+- `Enchantment.BANE_OF_ARTHROPODS` - Бич членистоногих. Увеличивает урон по паукам, чешуйницам и пчелам.
+- `Enchantment.KNOCKBACK` - Отдача. Отбрасывает противника назад при ударе мечом.
+- `Enchantment.FIRE_ASPECT` - Заговор огня. Поджигает противника при ударе мечом.
+- `Enchantment.LOOTING` - Добыча. Увеличивает количество предметов, выпадающих с убитых мобов.
+- `Enchantment.EFFICIENCY` - Эффективность. Увеличивает скорость разрушения блоков инструментами.
+- `Enchantment.SILK_TOUCH` - Шелковое касание. Позволяет добыть блок в его исходном виде (например, камень вместо булыжника или руду вместо алмазов).
+- `Enchantment.UNBREAKING` - Прочность. Увеличивает срок службы предмета (он медленнее теряет прочность).
+- `Enchantment.FORTUNE` - Удача. Увеличивает количество ресурсов, выпадающих из руды, или шанс выпадения редких предметов (семена, саженцы).
+- `Enchantment.POWER` - Сила. Увеличивает урон при стрельбе из лука.
+- `Enchantment.PUNCH` - Откидывание. Отбрасывает противника назад при попадании из лука.
+- `Enchantment.FLAME` - Воспламенение. Стрелы поджигают цель при попадании.
+- `Enchantment.INFINITY` - Бесконечность. Позволяет стрелять из лука, не тратя стрелы (при наличии хотя бы одной стрелы в инвентаре).
+- `Enchantment.LUCK_OF_THE_SEA` - Везучий рыбак. Повышает шанс поймать сокровище и снижает шанс выловить мусор.
+- `Enchantment.LURE` - Приманка. Уменьшает время ожидания поклевки при рыбалке.
+- `Enchantment.FROST_WALKER` - Ледоход. Превращает воду под ногами в лед при ходьбе и защищает от урона магма-блоков.
+- `Enchantment.MENDING` - Починка. Автоматически чинит предмет за счет подбираемого опыта.
 
 ### ParticleType
-*Все (почти) виды партиклов. Нужно для `Level.addParticle`*
-```js
-ParticleType.BUBBLE
-ParticleType.CRITICAL
-ParticleType.EXPLODE
-ParticleType.EVAPORATION
-ParticleType.FLAME
-ParticleType.LAVA
-ParticleType.RED_DUST
-ParticleType.SNOW_BALL_POOF
-ParticleType.LARGE_EXPLODE
-ParticleType.ULTRA_LARGE_EXPLODE
-ParticleType.MOB_FLAME
-ParticleType.HEART
-ParticleType.TERRAIN
-ParticleType.TOWN_AURA
-ParticleType.PORTAL
-ParticleType.WATER_SPLASH
-ParticleType.WATER_WAKE
-ParticleType.DRIP_WATER
-ParticleType.DRIP_LAVA
-ParticleType.FALLING_DUST
-ParticleType.SLIME
-ParticleType.RAIN_SPLASH
-ParticleType.VILLAGE_ANGRY
-ParticleType.VILLAGE_HAPPY
-ParticleType.ENCHANTING_TABLE
-ParticleType.NOTE
-```
+*Константы типов визуальных частиц (партиклов). Используются в методе `Level.addParticle(type, x, y, z, ...)`.*
+
+- `ParticleType.BUBBLE` - Пузырьки. Обычно появляются под водой или когда сущность тонет.
+- `ParticleType.CRITICAL` - Критический удар. Коричневые звездочки, вылетающие при нанесении критического урона (в прыжке).
+- `ParticleType.EXPLODE` - Взрыв. Маленькое облачко дыма от взрыва.
+- `ParticleType.EVAPORATION` - Испарение. Белый дым, появляющийся, например, когда вода касается лавы.
+- `ParticleType.FLAME` - Пламя. Маленькие огоньки, исходящие от факелов, спаунеров или горящих мобов.
+- `ParticleType.LAVA` - Лава. Оранжевые искры, вылетающие из лавы.
+- `ParticleType.RED_DUST` - Красная пыль. Частицы, исходящие от редстоуна или редстоун-факелов.
+- `ParticleType.SNOW_BALL_POOF` - Разрушение снежка. Эффект при попадании снежком в блок или сущность.
+- `ParticleType.LARGE_EXPLODE` - Большой взрыв. Большое облако дыма (как от ТНТ).
+- `ParticleType.ULTRA_LARGE_EXPLODE` - Гигантский взрыв. Огромное облако дыма (как от шара Гаста).
+- `ParticleType.MOB_FLAME` - Огонь мобов. Огонь, который появляется рядом с горящим спаунером мобов.
+- `ParticleType.HEART` - Сердечки. Появляются при размножении или приручении животных.
+- `ParticleType.TERRAIN` - Разрушение блока. Частицы, вылетающие при ломании блоков (текстура зависит от блока под ногами).
+- `ParticleType.TOWN_AURA` - Аура города. Серые частицы, парящие над мицелием (грибным биомом).
+- `ParticleType.PORTAL` - Портал. Фиолетовые частицы, летающие вокруг портала в Незер или Эндерменов.
+- `ParticleType.WATER_SPLASH` - Брызги воды. Эффект удара об воду.
+- `ParticleType.WATER_WAKE` - След на воде. Появляется за плывущей лодкой или рыбой.
+- `ParticleType.DRIP_WATER` - Капающая вода. Капли, падающие с потолка, если над блоком вода.
+- `ParticleType.DRIP_LAVA` - Капающая лава. Капли, падающие с потолка, если над блоком лава.
+- `ParticleType.FALLING_DUST` - Падающая пыль. Эффект осыпания песка или гравия, висящих в воздухе.
+- `ParticleType.SLIME` - Слизь. Зеленые частицы, вылетающие при прыжках слизней.
+- `ParticleType.RAIN_SPLASH` - Брызги дождя. Эффект удара капель дождя о землю.
+- `ParticleType.VILLAGE_ANGRY` - Злость жителя. Грозовые тучки над головой жителя (отказ от торговли или удар).
+- `ParticleType.VILLAGE_HAPPY` - Радость жителя. Зеленые звездочки (успешная торговля или использование костной муки).
+- `ParticleType.ENCHANTING_TABLE` - Знаки чародея. Глифы, летящие от книжных полок к столу зачарования.
+- `ParticleType.NOTE` - Нота. Цветные ноты, вылетающие из нотного блока.
 
 ## Hooks
 *Все игровые хуки на данный момент*
