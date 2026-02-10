@@ -73,6 +73,8 @@ myModule.addSetting(myBtn);
 ModuleManager.addModule(myModule);
 ```
 
+Переменная `data` уже занята самим JavaScript. Если попытаться ее определить в скрипте, то Rhino может подумать что скрипт пытается ее повторно объявить.
+
 
 
 ## Глобальные функции
