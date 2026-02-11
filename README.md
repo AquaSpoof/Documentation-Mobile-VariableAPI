@@ -192,6 +192,9 @@ ModuleManager.addModule(myModule);
 ## SliderSetting
 *Класс для создания настройки ползунка. Можно добавлять не только к кастомным модулям, но и к дефолтным*<br/>
 **Конструктор: `SliderSetting(String name, [double default, double min, double max, double step]);`**<br/>
+
+> **ВАЖНО:** Второй аргумент (параметры ползунка) **обязательно** должен быть передан как массив в квадратных скобках `[]`. Если передать числа просто через запятую, игра вылетит с ошибкой `java.lang.NullPointerException: Attempt to read from null array`.
+
 **Методы**
 
 - `SliderSetting.getName();` - возвращает имя настройки.
@@ -202,7 +205,14 @@ ModuleManager.addModule(myModule);
 - `SliderSetting.getCurrentValue();` - возвращает текущее значение.
 - `SliderSetting.setOnCurrentValueChangedListener(function(double currentValue));` - устанавливает действие `function(double currentValue)` выполняемое после любого изменения значения.
 
-**Примеры: скоро.**
+**Пример правильного использования:**
+```javascript
+// Правильно: параметры в массиве []
+const speed = new SliderSetting("Скорость", [5.0, 1.0, 20.0, 0.5]); 
+
+// Неправильно: вызовет краш
+const speed = new SliderSetting("Скорость", 5.0, 1.0, 20.0, 0.5); 
+```
 
 ## StateSetting
 *Класс для создания настройки состояния. Можно добавлять не только к кастомным модулям, но и к дефолтным*<br/>
