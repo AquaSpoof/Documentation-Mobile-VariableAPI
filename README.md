@@ -370,7 +370,7 @@ const speed = new SliderSetting("Скорость", 5.0, 1.0, 20.0, 0.5);
 - `Player.getYaw(int playerID);` - возвращает поворот головы по горизонтали в градусах.
 - `Player.getPitch(int playerID);` - возвращает поворот головы по вертикали в градусах.
 - `Player.getPositionX(int playerID);` - возвращает позицию по `x`.
-- `Player.getPositoinY(int playerID);` - возвращает позицию по `y`.
+- `Player.getPositionY(int playerID);` - возвращает позицию по `y`.
 - `Player.getPositionZ(int playerID);` - возвращает позицию по `z`.
 - `Player.getVelocityX(int playerID);` - возвращает ускорение по `x`.
 - `Player.getVelocityY(int playerID);` - возвращает ускорение по `y`.
